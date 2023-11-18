@@ -84,7 +84,7 @@ class UserManage extends Component {
     }
 
     handleEdituser = (user) => {
-        console.log('check edit user', user)
+        // console.log('check edit user', user)
         this.setState({
             isOpenModalEditUser: true,
             userEdit: user
@@ -122,9 +122,9 @@ class UserManage extends Component {
 
 
     render() {
-        console.log('check reder ', this.state)
+        // console.log('check reder ', this.state)
         let arrUsers = this.state.arrUsers;
-        console.log(arrUsers)
+        //console.log(arrUsers)
         //properties ; nested
         return (
             <div className="user-container" >
@@ -161,7 +161,7 @@ class UserManage extends Component {
                             </tr>
 
                             {arrUsers && arrUsers.map((item, index) => {
-                                console.log('check map', item, index);
+                                // console.log('check map', item, index);
                                 return (
                                     <tr>
                                         <td>{item.email}</td>

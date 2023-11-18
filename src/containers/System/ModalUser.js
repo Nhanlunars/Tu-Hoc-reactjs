@@ -19,7 +19,7 @@ class ModalUser extends Component {
         this.listenToEmitter();
     }
     componentDidMount() {
-        console.log('mouting modal')
+        //console.log('mouting modal')
     }
 
     listenToEmitter() {
@@ -91,8 +91,8 @@ class ModalUser extends Component {
 
 
     render() {
-        console.log('check child props ', this.props);
-        console.log('check child open modal ', this.props.isOpen);
+        //console.log('check child props ', this.props);
+        //console.log('check child open modal ', this.props.isOpen);
         return (
             <Modal
                 isOpen={this.props.isOpen}

@@ -1,4 +1,4 @@
-import actionTypes from '../actions/actionTypes';
+/*import actionTypes from '../actions/actionTypes';
 
 const initialState = {
     isLoggedIn: false,
@@ -30,4 +30,4 @@ const appReducer = (state = initialState, action) => {
     }
 }
 
-export default appReducer;
+export default appReducer;*/
