@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { getAllCodeService } from '../../../services/userService';
 import { LANGUAGES } from '../../../utils';
+import * as actions from "../../../store/actions";
 class UserRedux extends Component {
 
     constructor(props) {
@@ -13,25 +14,40 @@ class UserRedux extends Component {
     }
 
     async componentDidMount() {
-        try {
-            let res = await getAllCodeService('gender');
-            if (res && res.errCode === 0) {
-                this.setState({
-                    genderArr: res.data
-                })
-            }
-            console.log('chekc', res)
-        } catch (e) {
-            console.log(e)
-        }
+
+        this.props.getGenderStart();
+        // this.props.dispatch(actions.getGenderStart())
+        // try {
+        //     let res = await getAllCodeService('gender');
+        //     if (res && res.errCode === 0) {
+        //         this.setState({
+        //             genderArr: res.data
+        //         })
+        //     }
+        //     console.log('chekc', res)
+        // } catch (e) {
+        //     console.log(e)
+        // }
 
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        //render => didupdate
+        //hiện tại(this) và quá khứ(previous)
+        //[] [3]
+        //[3] [3]
+        if (prevProps.genderRedux !== this.props.genderRedux) {
+            this.setState({
+                genderArr: this.props.genderRedux
+            })
+        }
+    }
 
     render() {
-        console.log('check sate', this.state);
+
         let gender = this.state.genderArr;
         let language = this.props.language;
+        console.log('check props from redux', this.props.genderRedux);
         return (
             <div className='user-redux-container'>
 
@@ -113,11 +129,13 @@ class UserRedux extends Component {
 const mapStateToProps = state => {
     return {
         language: state.app.language,
+        genderRedux: state.admin.genders
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+        getGenderStart: () => dispatch(actions.fetchGenderStart())
     };
 };
 
