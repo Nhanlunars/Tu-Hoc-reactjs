@@ -29,13 +29,10 @@ class TableManageUser extends Component {
     }
 
     handleEditUser = (user) => {
-        console.log('hmm ... user edit ', user);
         this.props.handleEditUserFromParentKey(user)
     }
 
     render() {
-        console.log('hmmm....', this.props.listUsers);
-        console.log('hmmm check state....', this.state.usersRedux);
         let arrUsers = this.state.usersRedux;
         return (
             <table id="TableManageUser">

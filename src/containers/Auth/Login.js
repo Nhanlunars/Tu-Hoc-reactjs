@@ -24,7 +24,6 @@ class Login extends Component {
         this.setState({
             username: event.target.value
         })
-        console.log(event.target.value)
 
     }
     handleOnChangePassword = (event) => {
@@ -49,7 +48,7 @@ class Login extends Component {
                     errMessage: data.message
                 })
             }
-            if (data && data.errCode == 0) {
+            if (data && data.errCode === 0) {
                 //todo
                 this.props.userLoginSuccess(data.user)
                 console.log('login succeeds')
