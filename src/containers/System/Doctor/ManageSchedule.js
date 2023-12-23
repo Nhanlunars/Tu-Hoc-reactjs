@@ -126,17 +126,19 @@ class ManageSchedule extends Component {
             doctorId: selectedDoctor.value,
             formatedDate: formatedDate
         })
-        console.log('result', res)
         if (res && res.errCode === 0) {
-            toast.success("Done!");
+            toast.success("Save Infor succeed!");
+        } else {
+            toast.error("error saveBulkScheduleDoctor ");
+            console.log('error saveBulkScheduleDoctor >>> error: ', res)
 
         }
-        console.log(result)
     }
 
     render() {
         let { rangeTime } = this.state;
         let { language } = this.props;
+        let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
         return (
             <React.Fragment>
 
@@ -160,7 +162,7 @@ class ManageSchedule extends Component {
                                 onChange={this.handleOnchangeDatePicker}
                                 className='form-control'
                                 value={this.state.currentDate[0]}
-                                minDate={new Date()} />
+                                minDate={yesterday} />
                         </div>
                         <div className='col-12 pick-hour-container'>
                             {rangeTime && rangeTime.length > 0 &&
