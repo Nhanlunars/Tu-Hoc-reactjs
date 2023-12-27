@@ -132,32 +132,66 @@ class ManageDoctor extends Component {
             description: this.state.description,
             doctorId: this.state.selectedOption.value,
             action: hasOldData === true ? CRUD_ACTIONS.EDIT : CRUD_ACTIONS.CREATE,
-       
-            selectedPrice:  this.state.selectedPrice.value,
-            selectedPayment:  this.state.selectedPayment.value,
-            selectedProvince:  this.state.selectedProvince.value,
-            nameClinic:  this.state.nameClinic,
-            addressClinic:  this.state.addressClinic,
-            note:  this.state.note
+
+            selectedPrice: this.state.selectedPrice.value,
+            selectedPayment: this.state.selectedPayment.value,
+            selectedProvince: this.state.selectedProvince.value,
+            nameClinic: this.state.nameClinic,
+            addressClinic: this.state.addressClinic,
+            note: this.state.note
         })
     }
     handleChangeSelect = async (selectedOption) => {
         this.setState({ selectedOption });
+        let { listPayment, listPrice, listProvince } = this.state;
         let res = await getDetailInforDoctor(selectedOption.value)
         if (res && res.errCode === 0 && res.data && res.data.Markdown) {
             let markdown = res.data.Markdown;
+
+            let addressClinic = '', nameClinic = '', note = '', paymenId = '', priceId = '', provinceId = '',
+                selectedPayment = '', selectedPrice = '', selectedProvince = '';
+
+
+            if (res.data.Doctor_Infor) {
+                addressClinic = res.data.Doctor_Infor.addressClinic;
+                nameClinic = res.data.Doctor_Infor.nameClinic;
+                note = res.data.Doctor_Infor.note;
+                paymenId = res.data.Doctor_Infor.paymenId;
+                priceId = res.data.Doctor_Infor.priceId;
+                provinceId = res.data.Doctor_Infor.provinceId;
+
+                selectedPayment = listPayment.find(item => {
+                    return item && item.value === paymenId
+                })
+                selectedPrice = listPrice.find(item => {
+                    return item && item.value === priceId
+                })
+                selectedProvince = listProvince.find(item => {
+                    return item && item.value === provinceId
+                })
+            }
+
             this.setState({
                 contentHTML: markdown.contentHTML,
                 contentMarkdown: markdown.contentMarkdown,
                 description: markdown.description,
-                hasOldData: true
+                hasOldData: true,
+                addressClinic: addressClinic,
+                nameClinic: nameClinic,
+                note: note,
+                selectedPayment: selectedPayment,
+                selectedPrice: selectedPrice,
+                selectedProvince: selectedProvince
             })
         } else {
             this.setState({
                 contentHTML: '',
                 contentMarkdown: '',
                 description: '',
-                hasOldData: false
+                hasOldData: false,
+                // addressClinic: '',
+                // nameClinic: '',
+                // note: ''
             })
         }
         console.log(`Option selected:`, res)
