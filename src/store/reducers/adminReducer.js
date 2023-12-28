@@ -28,7 +28,6 @@ const adminReducer = (state = initialState, action) => {
                 ...state
             }
         case actionTypes.FETCH_GENDER_FAILED:
-            console.log('nhanlunars fetch gender failed: ', action)
             state.isLoadingGender = false;
             state.genders = [];
             return {

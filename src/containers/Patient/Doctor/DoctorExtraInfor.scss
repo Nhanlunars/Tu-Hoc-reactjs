@@ -26,6 +26,10 @@
                 cursor: pointer;
                 color: rgb(18, 160, 231)
             }
+
+            .currency {
+                margin: 0 5px;
+            }
         }
 
 
@@ -41,9 +45,7 @@
             .price {
                 padding-bottom: 10px;
 
-                .left {
-                    
-                }
+                .left {}
 
                 .right {}
             }

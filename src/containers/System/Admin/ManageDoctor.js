@@ -189,9 +189,9 @@ class ManageDoctor extends Component {
                 contentMarkdown: '',
                 description: '',
                 hasOldData: false,
-                // addressClinic: '',
-                // nameClinic: '',
-                // note: ''
+                addressClinic: '',
+                nameClinic: '',
+                note: ''
             })
         }
         console.log(`Option selected:`, res)
