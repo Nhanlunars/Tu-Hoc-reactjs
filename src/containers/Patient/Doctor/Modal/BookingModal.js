@@ -48,7 +48,11 @@ class BookingModal extends Component {
 
                     <div className='booking modal-body'>
                         <div className='doctor-infor'>
-                            <ProfileDoctor doctorId={doctorId} />
+                            <ProfileDoctor 
+                            doctorId={doctorId} 
+                            isShowDescriptionDoctor={false}
+                            dataTime={dataTime}
+                            />
                         </div>
                         <div className='price'>
                             Giá khám 500.000VNĐ
